@@ -10,7 +10,8 @@ import java.util.List;
 public class IntegersLambda {
 
 	public static void main(String[] args) {
-		recorrerListaEnteros();
+		//recorrerListaEnteros();
+		multiplicarListaEnteros();
 	}
 
 	/**
@@ -22,4 +23,9 @@ public class IntegersLambda {
 		listaEnteros.forEach(entero -> System.out.println(entero));
 	}
 
+	private static void multiplicarListaEnteros() {
+		List<Integer> listaEnteros = Arrays.asList(1,2,3,4,5,6);
+		listaEnteros.forEach(entero -> {entero *= entero; System.out.println(entero);});
+	}
+	
 }
