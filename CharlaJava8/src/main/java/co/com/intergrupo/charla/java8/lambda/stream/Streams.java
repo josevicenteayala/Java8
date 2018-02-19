@@ -5,6 +5,7 @@ import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.IntSummaryStatistics;
 import java.util.List;
@@ -93,6 +94,15 @@ public class Streams {
 				item -> item.getCantidad()*100).sum()).average();
 		
 		System.out.println("El promedio es: "+optionalDouble);
+		
+		
+		
+		/****************comprar cadenas por tamano*****************/
+		
+		List<String> listaCadenas = Arrays.asList("cadena grande","cadenita","cadenota","cadenas");
+		Comparator<? super String> comparator = ( x,  y) -> x.length() - y.length();
+		Collections.sort(listaCadenas, comparator);
+		listaCadenas.stream().forEach(System.out::println);
 	}
 
 	public static String imprimir(String cadena) {
