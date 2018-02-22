@@ -10,7 +10,11 @@ import java.time.Year;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.time.temporal.Temporal;
+import java.util.Comparator;
+import java.util.Set;
 
 public class OtrasClasesApi {
 
@@ -26,7 +30,7 @@ public class OtrasClasesApi {
 		OffsetDateTime offsetDateTime = localDateTime.atOffset(ZoneOffset.ofHours(2));
 		System.out.println("OffSetDateTime "+offsetDateTime);
 		
-		ZonedDateTime zonedDateTime = localDate.atStartOfDay(ZoneId.of("Europe/London"));
+		ZonedDateTime zonedDateTime = localDate.atStartOfDay(ZoneId.of("America/Bogota"));
 		System.out.println("zonedDateTime London: "+zonedDateTime);
 		
 		ZonedDateTime zonedDateTimeParis = localDate.atStartOfDay(ZoneId.of("Europe/Paris"));
@@ -41,6 +45,38 @@ public class OtrasClasesApi {
 		
 		Temporal temporalLocalDateTime = LocalDateTime.now();
 		System.out.println("Temporal2 Date:  "+temporalLocalDateTime);
+		
+		System.out.println("-------------------------------------");
+		imprimirZonas();
+	}
+	
+	
+	public static void imprimirZonas() {
+        Instant instant = Instant.now();
+        ZonedDateTime current = instant.atZone(ZoneId.systemDefault());
+        System.out.printf("Current time is %s%n%n", current);
+ 
+        System.out.printf("%10s %20s %13s%n", "Offset", "ZoneId", "Time");
+        Set<String> availableZoneIds = ZoneId.getAvailableZoneIds();
+        //availableZoneIds.stream().forEach((System.out::println));
+        
+        
+		availableZoneIds.stream()
+            .map(ZoneId::of)
+           .filter(zoneId -> {
+                ZoneOffset offset = instant.atZone(zoneId).getOffset();
+                return offset.getTotalSeconds() % (60 * 60) != 0;
+            })
+            .sorted(Comparator.comparingInt(zoneId -> {
+				ZonedDateTime atZone = instant.atZone(zoneId);
+				int totalSeconds = atZone.getOffset().getTotalSeconds();
+				return totalSeconds;
+			}))
+            .forEach(zoneId -> {
+                ZonedDateTime zdt = current.withZoneSameInstant(zoneId);
+                System.out.printf("%10s %25s %10s%n", zdt.getOffset(), zoneId,
+                    zdt.format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)));
+            });		
 	}
 
 }
