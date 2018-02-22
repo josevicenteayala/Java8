@@ -1,15 +1,17 @@
 package co.com.intergrupo.charla.java8.lambda.functionalinterface.compras;
 
 import java.util.List;
+import java.util.Objects;
 
 public class CarroComprasMangosImpl implements CarroCompras<List<Mango>> {
 
-	private List<Mango> listaMangos;
-	
 	@Override
 	public boolean agregarAlCarro(List<Mango> listaMangos) {
-		this.listaMangos = listaMangos;
-		return listaMangos.isEmpty();
+		try {
+			Objects.requireNonNull(listaMangos);
+			return listaMangos.isEmpty();
+		}catch(Exception e) {}
+		return true;
 	}
 
 }

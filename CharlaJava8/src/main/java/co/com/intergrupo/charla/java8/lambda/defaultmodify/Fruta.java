@@ -1,5 +1,6 @@
 package co.com.intergrupo.charla.java8.lambda.defaultmodify;
 
+@FunctionalInterface
 public interface Fruta {
 
 	String obtenerPropiedades();
@@ -7,4 +8,6 @@ public interface Fruta {
 	default String regionDondeSeCultiva() {
 		return "Desconocida";
 	}
+	
+
 }
