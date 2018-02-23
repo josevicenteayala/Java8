@@ -15,7 +15,7 @@ public class OrdenCompra {
 		Item banano = new Item(10,"Banano");
 		Item uva = new Item(100, "Uva");;
 		Item mango = new Item(30, "Mango");;
-		Item pina = new Item(20, "Piña");
+		Item pina = new Item(20, "Pina");
 		listaCompras = Arrays.asList(banano,mango,uva,pina);
 		return listaCompras;
 	}

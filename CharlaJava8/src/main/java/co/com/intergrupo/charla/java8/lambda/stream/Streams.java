@@ -21,12 +21,29 @@ public class Streams {
 	private static String directorioDeTrabajo = System.getProperty("user.dir");
 
 	public static void main(String[] args) {
-		/*
-		  recorrerDirectorio(); System.out.println("***********************");
+		
+		  recorrerDirectorio(); 
+		  System.out.println("***********************");
 		  recorrerDirectorioConWalk();
+		  System.out.println("***********************");
 		  lecturaArchivoFuente();
 		
-		*/
+		
+		ejercicioConStreams();
+		
+		
+		/************Otro Ejercicio*******/
+		ejercicioOrdenesDeCompra(); 
+		
+		/****************comparar cadenas por tamano*****************/
+		
+		List<String> listaCadenas = Arrays.asList("cadena grande","cadenita","cadenota","cadenas");
+		Comparator<? super String> comparator = ( x,  y) -> x.length() - y.length();
+		Collections.sort(listaCadenas, comparator);
+		listaCadenas.stream().forEach(System.out::println);
+	}
+
+	private static void ejercicioConStreams() {
 		List<Integer> listaEnteros = Arrays.asList(1,2,3,4,5);
 		System.out.println(listaEnteros.stream().count());
 		System.out.println(listaEnteros.size());
@@ -79,9 +96,9 @@ public class Streams {
 		System.out.println("Lista luedo de ordenarse");
 		List<Integer> listaEnterosDesordenada = Arrays.asList(8,3,6,1,0,4,9,15);
 		listaEnterosDesordenada.stream().sorted().forEach(CustomConsumer::imprimir);
-		
-		
-		/************Otro Ejercicio*******/
+	}
+
+	private static void ejercicioOrdenesDeCompra() {
 		Stream<OrdenCompra> ordenCompraStream = OrdenCompraService.getStream();
 		Stream<OrdenCompra> ordenCompraStream2 = OrdenCompraService.getStream();
 		OptionalDouble promedio = ordenCompraStream.filter(o -> o.getListaCompras().size()>2).mapToDouble(OrdenCompra::total).average();
@@ -94,21 +111,14 @@ public class Streams {
 				item -> item.getCantidad()*100).sum()).average();
 		
 		System.out.println("El promedio es: "+optionalDouble);
-		
-		
-		
-		/****************comprar cadenas por tamano*****************/
-		
-		List<String> listaCadenas = Arrays.asList("cadena grande","cadenita","cadenota","cadenas");
-		Comparator<? super String> comparator = ( x,  y) -> x.length() - y.length();
-		Collections.sort(listaCadenas, comparator);
-		listaCadenas.stream().forEach(System.out::println);
 	}
 
 	public static String imprimir(String cadena) {
 		System.out.println("valor a imprimir: "+cadena);
 		return cadena;
 	}
+	
+	
 	public static void lecturaArchivoFuente() {
 		Path directorio = obtenerPath(directorioDeTrabajo);
 
@@ -118,9 +128,10 @@ public class Streams {
 
 		try {
 			Files.find(directorio, profundidadBusqueda, (filename, attributes) -> filename.endsWith(classFileName))
-					.forEach(path -> {
+					.forEach(archivo -> {
 						try {
-							Files.lines(directorio).forEach(System.out::println);
+							System.out.println("ruta archivo: "+archivo);
+							Files.lines(archivo).forEach(System.out::println);
 						} catch (Exception e) {
 							e.printStackTrace();
 						}

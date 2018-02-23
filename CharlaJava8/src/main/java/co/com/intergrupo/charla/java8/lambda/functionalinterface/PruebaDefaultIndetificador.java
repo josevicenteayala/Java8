@@ -5,7 +5,6 @@ public class PruebaDefaultIndetificador {
 	public static void main(String[] args) {
 		UsoInterfaces usoInterfaces = new UsoInterfaces();
 		System.out.println(usoInterfaces.metodo());
-
 	}
 
 }
@@ -25,14 +24,12 @@ class UsoInterfaces implements PrimeraInterfaz, SegundaInterfaz{
 
 
 interface PrimeraInterfaz{
-	
 	default String metodo() {
 		return "Metodo PrimeraInterfaz";
 	}
 }
 
 interface SegundaInterfaz{
-	
 	default String metodo() {
 		return "Metodo PrimeraInterfaz";
 	}

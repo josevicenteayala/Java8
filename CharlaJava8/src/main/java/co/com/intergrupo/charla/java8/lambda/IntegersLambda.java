@@ -18,20 +18,17 @@ public class IntegersLambda {
 		
 		List<Integer> listaEnteros = Arrays.asList(1,2,3,4,5);
 		Instant instant1 = Instant.now();
-		System.out.println(instant1);
 		int sumaEnteros = listaEnteros.stream().reduce(0, (x,y) ->x+y);
 		Instant instant2 = Instant.now();
-		System.out.println(instant2);
 		long diferenciaEnMilisegundos = ChronoUnit.MILLIS.between(instant1, instant2);
 		System.out.println("Suma de enteros "+sumaEnteros+" diferenciaEnMilisegundos "+diferenciaEnMilisegundos);
 		
-		
-		Instant instant3 = Instant.now();
 		List<Integer> listaEnterosSincronizados = Collections.synchronizedList(listaEnteros);
+		Instant instant3 = Instant.now();
 		sumaEnteros = listaEnterosSincronizados.stream().parallel().reduce(0, (x,y) ->x+y);
 		Instant instant4 = Instant.now();
 		long diferenciaEnMilisegundos2 = ChronoUnit.MILLIS.between(instant3, instant4);
-		System.out.println("Suma de enteros "+sumaEnteros+" diferenciaEnMilisegundos "+diferenciaEnMilisegundos2);
+		System.out.println("Suma de enteros en paralelo "+sumaEnteros+" diferenciaEnMilisegundos "+diferenciaEnMilisegundos2);
 	}
 
 	/**

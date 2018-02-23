@@ -30,10 +30,10 @@ public class PruebaDeCompra {
 
 	CarroCompras<List<Mango>> agregarFrutasYAumentarPrecioEn20(List<Mango> listaMangos) {
 		Objects.requireNonNull(listaMangos);
-	  Double suma = listaMangos.stream().mapToDouble(mango -> mango.aumentarPrecio(20d)).sum();
-	  System.out.println("La suma es: "+suma);
-	  CarroComprasMangosImpl carroComprasMangosImpl = new CarroComprasMangosImpl();
-	  carroComprasMangosImpl.agregarAlCarro(listaMangos);
-	  return carroComprasMangosImpl;
+		Double suma = listaMangos.stream().mapToDouble(mango -> mango.aumentarPrecio(20d)).sum();
+		System.out.println("La suma es: "+suma);
+		CarroComprasMangosImpl carroComprasMangosImpl = new CarroComprasMangosImpl();
+		carroComprasMangosImpl.agregarAlCarro(listaMangos);
+		return carroComprasMangosImpl;
 	}
 }
