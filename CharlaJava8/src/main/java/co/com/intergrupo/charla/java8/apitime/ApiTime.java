@@ -24,7 +24,7 @@ public class ApiTime {
 		String zonaColombiana = ZoneId.getAvailableZoneIds().stream().filter(zona->zona.contains("Bogota")).map(x->x).findFirst().get();
 		ZoneId zonaLocal = ZoneId.of(zonaColombiana);
 		LocalTime localTime2 = LocalTime.now(zonaLocal);
-		System.out.println(localTime2);
+		System.out.println("localTime2 "+localTime2);
 		
 		Instant instant = Instant.now(Clock.system(zonaLocal));
 		System.out.println("instant "+instant);
