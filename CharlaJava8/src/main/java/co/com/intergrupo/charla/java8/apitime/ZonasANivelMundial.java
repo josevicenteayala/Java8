@@ -9,7 +9,7 @@ public class ZonasANivelMundial {
 		Instant instant = Instant.now();
 		System.out.println(instant);	
 		
-		//ZoneId.getAvailableZoneIds().stream().forEach(System.out::println);
+		ZoneId.getAvailableZoneIds().stream().forEach(System.out::println);
 	}
 
 }
