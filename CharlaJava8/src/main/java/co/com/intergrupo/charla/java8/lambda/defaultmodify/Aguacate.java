@@ -9,8 +9,7 @@ public class Aguacate implements Fruta, Verdura {
 
 	@Override
 	public String regionDondeSeCultiva() {
-		String region = Fruta.super.regionDondeSeCultiva();
-		return region.replaceAll(region," La Ceja Antioquia");
+		return " La Ceja Antioquia";
 	}
 
 }
