@@ -6,7 +6,10 @@ public class PruebaMetodosEstaticos {
 		System.out.println(InterfaceConMetodosEstaticos.devolverUnaCadena());
 		System.out.println(OtraInterfazConElMismoMetodoEstatico.devolverUnaCadena());
 		
-		System.out.println(ClaseQueUsaLasInterfaces.devolverUnaCadena());
+		System.out.println(ClaseQueUsaLasInterfaces.devolverUnaCadenaDesdeClaseConcreta());
+		
+		ClaseQueUsaLasInterfaces claseQueUsaLasInterface = new ClaseQueUsaLasInterfaces();
+		System.out.println("PruebaMetodosEstaticos.main() claseQueUsaLasInterfaces "+claseQueUsaLasInterface.devolverUnaCadenaDesdeClaseConcreta());
 	}
 
 }
