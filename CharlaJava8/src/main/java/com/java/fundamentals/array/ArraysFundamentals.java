@@ -22,6 +22,18 @@ public class ArraysFundamentals {
 		System.out.println("stringArray "+Arrays.toString(stringArray));
 		System.out.println("stringArray "+stringArray.toString());
 		
+		Object[] arrayObject = new String[10];
+		Arrays.fill(arrayObject, "String value");
+		
+		System.out.println(Arrays.toString(arrayObject));
+		Object[] copyOfNewArray5 = Arrays.copyOf(arrayObject,15);
+		System.out.println(Arrays.toString(copyOfNewArray5));
+		
+		System.out.println(Arrays.deepHashCode(arrayObject));
+		
+		final int count =0;
+		Arrays.stream(stringArray).map(s->s.concat("..."));
+		System.out.println(Arrays.deepToString(stringArray));
 	}
 
 }
